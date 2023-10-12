@@ -14,7 +14,7 @@
 
         echo 
         "<li class='item'>
-          <a class='item-link' href='$route_path'>$route_name</a>
+          <a class='item-link' href='$route_path.php'>$route_name</a>
         </li>";
       }
     ?>
