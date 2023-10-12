@@ -13,19 +13,36 @@
   }
 
   // Función para ejecutar consultas SQL
-  function executeQuery($IsSelectOperation, $sql)
+// Función para ejecutar consultas SQL con parámetros
+  function executeQuery($IsSelectOperation, $sql, $values = array())
   {
     global $conn;
 
-    // Ejecutar la consulta SQL
-    $result = $conn->query($sql);
+    // Preparar la consulta SQL
+    $stmt = $conn->prepare($sql);
 
-    // Si la consulta es SELECT y la ejecución tiene éxito, devolver los resultados en un arreglo asociativo
-    if ($result && $IsSelectOperation) {
-      return $result->fetch_all(MYSQLI_ASSOC);
+    // Verificar si la preparación de la consulta fue exitosa
+    if ($stmt) {
+      // Unir los valores a la consulta preparada
+      if (!empty($values)) {
+        $types = str_repeat('s', count($values)); // Suponemos que todos los valores son cadenas (strings)
+        $stmt->bind_param($types, ...$values);
+      }
+
+      // Ejecutar la consulta preparada
+      $stmt->execute();
+
+      // Si la consulta es SELECT y la ejecución tiene éxito, devolver los resultados en un arreglo asociativo
+      if ($IsSelectOperation) {
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+      }
+
+      // Si la consulta es de otro tipo (INSERT, UPDATE, DELETE) y la ejecución tiene éxito, devolver true
+      return $stmt->affected_rows > 0;
+    } else {
+      // Si hubo un error en la preparación de la consulta, puedes manejarlo aquí
+      return false;
     }
-
-    // Si la consulta es de otro tipo (INSERT, UPDATE, DELETE) y la ejecución tiene éxito, devolver true
-    return $conn->query($sql) === TRUE;
   }
 ?>
