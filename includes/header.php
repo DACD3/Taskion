@@ -1,4 +1,4 @@
-<?php include('includes/database.php') ?>
+<?php include('../includes/database.php') ?>
 
 <header class="header">
   <section class="brand-container">
