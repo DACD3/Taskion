@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /
+
+# Verificar si la solicitud no se dirige a un archivo o directorio existente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Redireccionar todas las solicitudes a la carpeta "pages"
+RewriteRule ^(.*)$ pages/$1 [L]
