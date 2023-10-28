@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  height: 3.5rem;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary);
+  color: white;
+  padding-inline: 1rem;
+}
+
+.brand-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.menu {
+  display: flex;
+  list-style: none;
+  height: 70%;
+  gap: 0.5rem;
+}
+
+.menu-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  height: 100%;
+  font-size: 0.8rem;
+  padding-inline: 0.5rem;
+  transition: 0.5s all;
+}
+
+.menu-link:hover {
+  background-color: var(--secondary);
+  color: white;
+}
