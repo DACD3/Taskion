@@ -1,22 +1,11 @@
-<?php include('../includes/database.php') ?>
-
 <header class="header">
   <section class="brand-container">
-    <img src="https://via.placeholder.com/250x40" alt="example brand icon">
-    <h1>Taskion</h1>
+    <img src="assets/images/taskion-logo.png" width="250" height="40" alt="">
   </section>
   <ul class="menu">
-    <?php 
-      $result = executeQuery(true, "SELECT * FROM routes");
-      foreach($result as $row) {
-        $route_name = $row['route_name'];
-        $route_path = $row['route_path'];
-
-        echo 
-        "<li class='item'>
-          <a class='item-link' href='$route_path.php'>$route_name</a>
-        </li>";
-      }
-    ?>
+    <li><a href="/" class="menu-link">Inicio</a></li>
+    <li><a href="/register" class="menu-link">Registrarse</a></li>
+    <li><a href="/login" class="menu-link">Iniciar sesión</a></li>
+    <li><a href="/app" class="menu-link">Ir a la app</a></li>
   </ul>
 </header>
