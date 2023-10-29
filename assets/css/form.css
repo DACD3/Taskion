@@ -20,16 +20,6 @@
   gap: 0.5rem;
 }
 
-.error {
-  background-color: #fcd3d8;
-  color: #ef233c;
-  padding: 0.5rem;
-  width: 50%;
-  margin: 0 auto;
-  margin-top: 1rem;
-  border-radius: 0.3rem;
-}
-
 .label {
 
 }
@@ -73,5 +63,14 @@
   padding: 1rem;
   background-color: var(--sucess-bg);
   color: var(--sucess-fg);
+  margin-bottom: 1rem;
+}
+
+.error {
+  width: 50%;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: var(--error-bg);
+  color: var(--error-fg);
   margin-bottom: 1rem;
 }
