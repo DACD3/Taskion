@@ -63,7 +63,7 @@ class User
 
   public function setPassword($password)
   {
-    $this->password = $password;
+    $this->password = password_hash($password, PASSWORD_BCRYPT);
   }
 
   public function getAvatar()
@@ -74,5 +74,10 @@ class User
   public function setAvatar($avatar)
   {
     $this->avatar = $avatar;
+  }
+
+  public function __toString()
+  {
+    return "ID: {$this->id}, Nombre: {$this->name}, Usuario: {$this->username}, Email: {$this->email}, Avatar: {$this->avatar}";
   }
 }
