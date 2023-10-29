@@ -6,6 +6,8 @@
   --button-bg-hv: #29a48b;
   --button-bg: #228b76;
   --body-bg: white;
+  --sucess-bg: #b7e4c7;
+  --sucess-fg: #1b4332;
 
   background-color: var(--body-bg);
 }
@@ -22,7 +24,7 @@
 
 .center {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   gap: 1rem;
 }
