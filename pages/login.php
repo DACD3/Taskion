@@ -20,15 +20,15 @@
       Inicia sesión para continuar a la aplicación
     </p>
 
-    <form class="form" action="" method="post">
+    <form class="form" action="/login" method="post">
       <section class="form-group">
         <label for="" class="label">Email</label>
-        <input class="input" type="text" name="" id="">
+        <input class="input" type="text" name="Email" id="Email">
       </section>
       
       <section class="form-group">
         <label for="" class="label">Contraseña</label>
-        <input class="input" type="password" name="" id="">
+        <input class="input" type="password" name="Password" id="Password">
       </section>
 
       <section class="form-group">
@@ -38,5 +38,6 @@
     </form>
 
   </main>
+  <?php include_once('../includes/login.php') ?>
 </body>
 </html>
