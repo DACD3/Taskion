@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "<p class='error'>Los campos están vacios.</p>";
     exit;
   }
-    
+
   if ($result) {
     $user = new User(
       null,
@@ -39,10 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (password_verify($fields['Password'], $result[0]['Password'])) {
       $_SESSION['loggedin'] = true;
       $_SESSION['user'] = $user;
+
       echo "<p class='sucess'>Autenticado correctamente</p>";
-      header('');
+      
+      header('Location: /app', true);
       exit;
-    } else {
+    } 
+    else {
       echo "<p class='error'>Creedenciales de inicio de sesión invalidas</p>";
       exit;
     }
