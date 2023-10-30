@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if ($result) {
     $user = new User(
-      null,
+      $result[0]['id'],
       $result[0]['Name'],
       $result[0]['Username'],
       $result[0]['Email'],
