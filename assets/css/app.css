@@ -106,8 +106,9 @@ body {
 }
 
 .button-link {
+  all: unset;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   background-color: var(--btn-bg);
   height: 3rem;
@@ -115,4 +116,6 @@ body {
   border-radius: 0.2rem;
   color: white;
   text-decoration: none;
+  border-color: transparent;
+  cursor: pointer;
 }
