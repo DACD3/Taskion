@@ -35,13 +35,15 @@
       <a href="" class="menu-link">Proyectos</a>
     </li>
 
+    <li class="menu-item">
+      <span class="icon fas fa-sign-out fa-xl"></span>
+      <a href="/app?operation=logout" class="menu-link">Salir</a>
+    </li>
 
   </ul>
 
   <section class="user">
-    <?php echo $avatarEl ?>
     <p>
-      <?php echo $image_alt ?>
     </p>
   </section>
 
