@@ -15,21 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $sql = "SELECT * FROM users where Email = ?";
 
-  // var_dump($fields);
-
   $result = executeQuery(true, $sql, [
     $fields['Email'],
   ]);
-
-  // var_dump($result);
 
   if (empty($result)) {
     echo "<p class='error'>Los campos están vacios.</p>";
     exit;
   }
-
-  // var_dump($result);
-  
+    
   if ($result) {
     $user = new User(
       null,
