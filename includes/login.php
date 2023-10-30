@@ -13,50 +13,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fields[$key] = $value;
   }
 
-  $fields['Password'] = password_hash($fields['Password'], PASSWORD_DEFAULT);
+  $sql = "SELECT * FROM users where Email = ?";
 
-
-  $sql = "SELECT * FROM users where Email = ? and Password = ?";
-
-  var_dump($fields);
+  // var_dump($fields);
 
   $result = executeQuery(true, $sql, [
     $fields['Email'],
-    $fields['Password']
   ]);
 
-  var_dump($result);
+  // var_dump($result);
 
   if (empty($result)) {
     echo "<p class='error'>Los campos están vacios.</p>";
     exit;
   }
 
-  var_dump($result);
+  // var_dump($result);
   
-  if (isset($result)) {
+  if ($result) {
     $user = new User(
       null,
-      $result['Name'],
-      $result['Username'],
-      $result['Email'],
-      $result['Password'],
-      $result['Avatar']
+      $result[0]['Name'],
+      $result[0]['Username'],
+      $result[0]['Email'],
+      $result[0]['Password'],
+      $result[0]['Avatar']
     );
-  }
 
+    session_start();
 
-  session_start();
-
-  if ($fields['Email'] == $result['Email'] && password_verify($fields['Password'], $result['Password'])) {
-    $_SESSION['loggedin'] = true;
-    $_SESSION['user'] = $user;
-
-    header('');
-    exit;
-  } 
-  else {
-    echo "<p class='error'>Creedenciales de inicio de sesión invalidas</p>";
-    exit;
+    if (password_verify($fields['Password'], $result[0]['Password'])) {
+      $_SESSION['loggedin'] = true;
+      $_SESSION['user'] = $user;
+      echo "<p class='sucess'>Autenticado correctamente</p>";
+      header('');
+      exit;
+    } else {
+      echo "<p class='error'>Creedenciales de inicio de sesión invalidas</p>";
+      exit;
+    }
   }
 }
