@@ -38,12 +38,10 @@ $user = $_SESSION['user'];
       <?php require_once('../includes/create.php') ?>
     </section>
 
-    <section class="projects">
-      <h2>Proyectos</h2>
-    </section>
-
-    <section class="tasks">
-      <h2>Tareas</h2>
+    <h2>Proyectos</h2>
+    
+    <section class="projects" id="projects">
+      <?php require_once('../includes/loadProjects.php') ?>
     </section>
 
   </main>
