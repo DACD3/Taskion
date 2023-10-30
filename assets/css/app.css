@@ -7,6 +7,7 @@
   --side-bar-hv: #5d6166;
 
   --btn-bg: #e63946;
+  --project-bg: #3f474f;
 }
 
 body {
@@ -15,6 +16,7 @@ body {
   height: 100dvh;
   grid-template-columns: auto 1fr;
   grid-template-rows: 100%;
+  overflow: hidden;
 }
 
 
@@ -118,4 +120,40 @@ body {
   text-decoration: none;
   border-color: transparent;
   cursor: pointer;
+}
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #000000 #404040;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.projects::-webkit-scrollbar {
+  width: 1rem;
+}
+
+.projects::-webkit-scrollbar-track {
+  background: #404040;
+}
+
+.projects::-webkit-scrollbar-thumb {
+  background-color: #000000;
+  border-radius: 10px;
+  border: 0px solid #ffffff;
+}
+
+.project {
+  display: flex;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: var(--project-bg);
+}
+
+.project .action {
+  display: flex;
+  gap: 0.2rem;
 }
