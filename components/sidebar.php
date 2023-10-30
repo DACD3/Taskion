@@ -19,6 +19,11 @@
   </section>
 
   <ul class="menu">
+    
+    <li class="menu-item">
+      <span class="icon fas fa-home fa-xl"></span>
+      <a href="/" class="menu-link">Inicio</a>
+    </li>
 
     <li class="menu-item">
       <span class="icon fas fa-list-check fa-xl"></span>
@@ -29,6 +34,7 @@
       <span class="icon fas fa-folder-closed fa-xl"></span>
       <a href="" class="menu-link">Proyectos</a>
     </li>
+
 
   </ul>
 
