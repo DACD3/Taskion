@@ -26,6 +26,20 @@ $user = $_SESSION['user'];
   <?php include('../components/sidebar.php') ?>
   <main class="app content">
     <h1>¡Bienvenido <?php echo substr($user->getName(), 0, 7) ?>!</h1>
+    
+    <section class="create">
+      <a class="button-link" href="/project">Crear proyecto</a>
+      <a class="button-link" href="/task">Crear tarea</a>
+    </section>
+
+    <section class="projects">
+      <h2>Proyectos</h2>
+    </section>
+
+    <section class="tasks">
+      <h2>Tareas</h2>
+    </section>
+
   </main>
 </body>
 </html>
