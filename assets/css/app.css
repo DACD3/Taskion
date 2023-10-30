@@ -2,9 +2,11 @@
   --side-bar: #343a40;
   --app-bg: #212529;
   --divider-bg: #06f;
-  
+
   --theme-fg-hv: #ced4da;
   --side-bar-hv: #5d6166;
+
+  --btn-bg: #e63946;
 }
 
 body {
@@ -50,15 +52,18 @@ body {
 }
 
 .app {
+  display: flex;
+  flex-direction: column;
   background-color: var(--app-bg);
   color: white;
+  gap: 1rem;
 }
 
 .menu {
   padding-block: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: center;
   list-style: none;
 }
 
@@ -80,7 +85,7 @@ body {
   opacity: 0;
   display: flex;
   overflow: hidden;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   gap: 1rem;
 }
@@ -91,6 +96,23 @@ body {
   border-radius: 50%;
 }
 
-.sidebar.open > .user {
+.sidebar.open>.user {
   opacity: 1;
+}
+
+.create {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.button-link {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background-color: var(--btn-bg);
+  height: 3rem;
+  padding-inline: 1rem;
+  border-radius: 0.2rem;
+  color: white;
+  text-decoration: none;
 }
