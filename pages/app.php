@@ -18,6 +18,7 @@ $user = $_SESSION['user'];
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Taskion - App</title>
   <?php include('../includes/styles.php') ?>
+  <link rel="stylesheet" href="./assets/css/form.css">
   <link rel="stylesheet" href="./assets/css/app.css">
   <script defer src="./assets/js/initial.js"></script>
   <script defer src="./assets/js/app.js"></script>
@@ -28,8 +29,13 @@ $user = $_SESSION['user'];
     <h1>¡Bienvenido <?php echo substr($user->getName(), 0, 7) ?>!</h1>
     
     <section class="create">
-      <a class="button-link" href="/project">Crear proyecto</a>
-      <a class="button-link" href="/task">Crear tarea</a>
+      <button id="create-project" class="button-link">Crear proyecto</button>
+      <button id="create-task" class="button-link" >Crear tarea</button>
+    </section>
+
+    <section id="form-container" class="form">
+
+      <?php require_once('../includes/create.php') ?>
     </section>
 
     <section class="projects">
