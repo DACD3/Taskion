@@ -12,9 +12,6 @@
     'logout' => 'handleLogout'
   ];
 
-  $message = "";
-
-
   function handleCreateProject($fields) {
     global $conn;
 
