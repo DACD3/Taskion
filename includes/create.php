@@ -27,7 +27,7 @@
                                        ENT_QUOTES, 'UTF-8');
 
       if (empty($project_name)) {
-        echo '<p class="error">No puedes nombrar un proyecto así</p>';
+        echo '<p class="error">El nombre de proyecto no puede estar vacio.</p>';
         return;
       }
 
