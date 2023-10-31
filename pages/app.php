@@ -33,7 +33,7 @@ $user = $_SESSION['user'];
       <button id="create-task" class="button-link" >Crear tarea</button>
     </section>
 
-    <section id="form-container" class="form">
+    <section id="form-container">
 
       <?php require_once('../includes/create.php') ?>
     </section>
