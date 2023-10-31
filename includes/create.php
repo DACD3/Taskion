@@ -25,9 +25,17 @@
       $user = $_SESSION['user'];
 
       $sql = "INSERT INTO projects (Name) VALUES (?)";
+      
+      $project_name = htmlspecialchars($fields["Name"], 
+                                       ENT_QUOTES, 'UTF-8');
+
+      if (empty($project_name)) {
+        echo '<p class="error">No puedes nombrar un proyecto así</p>';
+        return;
+      }
 
       executeQuery(false, $sql, [
-        $fields['Name']
+        $project_name
       ]);
 
       $project_id = $conn->lastInsertId();
