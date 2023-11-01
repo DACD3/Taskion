@@ -28,14 +28,47 @@ $user = $_SESSION['user'];
   <main class="app content">
     <h1>¡Bienvenido <?php echo substr($user->getName(), 0, 7) ?>!</h1>
     
-    <section class="create">
-      <button id="create-project" class="button-link">Crear proyecto</button>
-      <button id="create-task" class="button-link" >Crear tarea</button>
-    </section>
+    <section class="tab-component">
+      <section class="tab-container">
+        <button id="project" class="tab-button active">Crear proyecto</button>
+        <button id="task" class="tab-button">Crear tarea</button>
+      </section>
+      <section class="tab-content" id="tab-content">
+        <form id="form-project" class="form visible" action="/app?operation=createProject" method="post">
+          <section class="form-group">
+            <label for="" class="label">Nombre del proyecto</label>
+            <input class='input' type="text" name="Name" id="Name">
+          </section>
+          <section class="form-group">
+            <button type="submit" class="button">
+              Crear proyecto
+            </button>
+          </section>
+        </form>
 
-    <section id="form-container">
+        <form id="form-task" action="/app?operation=createTask" method="post" class="form">
 
-      <?php require_once('../includes/create.php') ?>
+          <section class="form-group">
+            <label for="" class="label">Proyecto</label>
+          </section>
+
+          <section class="form-group">
+            <label for="Name" class="label">Nombre de la tarea</label>
+            <input class="input" type="text" name="Name" id="Name">
+          </section>
+          
+          <section class="form-group">
+            <label for="" class="label">Descripción</label>
+            <input class="input" type="text" name="Description" id="Description">
+          </section>
+
+          <section class="form-group">
+            <button type="submit" class="button">Crear tarea</button>
+          </section>
+
+        </form>
+        <?php require_once('../includes/create.php') ?>
+      </section>
     </section>
 
     <h2>Proyectos</h2>
