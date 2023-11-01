@@ -22,9 +22,5 @@
 
     echo "<article class='project' id=$project_id>";
       echo "<h4>{$project->getName()}</h4>";
-      echo "<form class='action' action='/app'>";
-      echo "<button>Eliminar</button>";
-      echo "<button>Editar</button>";
-      echo "</form>";
     echo "</article>";
   }
