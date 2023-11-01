@@ -1,11 +1,11 @@
-const VIEWS_URL = [
+const FORMS = [
   {
-    id: "create-project",
-    url: `${window.location.origin}/assets/views/createProject.php`, // Usa origin para evitar el problema del href
+    id: "project",
+    formId: `form-project`
   },
   {
-    id: "create-task",
-    url: `${window.location.origin}/assets/views/createTask.php`, // Añade la URL correcta
+    id: "task",
+    formId: `form-task`
   },
 ]
 
@@ -16,21 +16,25 @@ togglerEl.addEventListener("click", () => {
   sidebarEl.classList.toggle("open")
 })
 
-const handleClick = async (e) => {
+const tabs = document.querySelectorAll('.tab-button');
 
-  const id = e.currentTarget.id;
+const handleTabChange = (e) => {
+  tabs.forEach(el => el.classList.remove('active'));
+  
+  const forms = document.querySelectorAll('.form');
 
-  const view = VIEWS_URL.find( v => v.id === id);
+  forms.forEach(el => el.classList = "form");
 
-  const res = await fetch(view.url)
+  let tab = e.target;
 
-  const content = await res.text()
+  tab.classList.add('active');
 
-  $("form-container").innerHTML = content
+  let form = FORMS.find(el => el.id === tab.id);
+  let formEl = $(form.formId);
+
+  formEl.classList.add('visible');  
 }
 
-const actions = document.querySelectorAll(".button-link")
-
-actions.forEach(async (el) => {
-  el.addEventListener("click", handleClick)
-})
+tabs.forEach(el => {
+  el.addEventListener('click', handleTabChange);
+});
