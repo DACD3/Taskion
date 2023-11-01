@@ -75,7 +75,19 @@ $user = $_SESSION['user'];
     <h2>Proyectos</h2>
     
     <section class="projects" id="projects">
+      <?php
+        $result = getProjectsByUser();
 
+        foreach($result as $project) {
+          $project = new Project($project['id'], $project['Name']);
+
+          $project_id = $project->getId();
+
+          echo "<article class='project' id=$project_id>";
+          echo "<h4>{$project->getName()}</h4>";
+          echo "</article>";
+        }
+      ?>
     </section>
 
   </main>
