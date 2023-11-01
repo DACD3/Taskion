@@ -58,12 +58,15 @@
 }
 
 .sucess {
+  display: flex;
+  gap: 2rem;
   width: 50%;
   margin: 0 auto;
   padding: 1rem;
   background-color: var(--sucess-bg);
   color: var(--sucess-fg);
-  margin-bottom: 1rem;
+  /* justify-content: center;  */
+  align-items: center;
 }
 
 .error {
