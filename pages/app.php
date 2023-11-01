@@ -25,6 +25,7 @@ $user = $_SESSION['user'];
 </head>
 <body>
   <?php include('../components/sidebar.php') ?>
+  <?php require_once ('../includes/queries.php') ?>
   <main class="app content">
     <h1>¡Bienvenido <?php echo substr($user->getName(), 0, 7) ?>!</h1>
     
@@ -74,7 +75,7 @@ $user = $_SESSION['user'];
     <h2>Proyectos</h2>
     
     <section class="projects" id="projects">
-      <?php require_once('../includes/loadProjects.php') ?>
+
     </section>
 
   </main>
