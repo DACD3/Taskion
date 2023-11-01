@@ -46,7 +46,8 @@
 
       $conn->commit();
 
-      echo '<p class="sucess">¡Proyecto creado correctamente!</p>';
+      echo '<p class="sucess"> <span onclick="close(e)" class="closeable fas fa-times fa-xl"></span> ¡Proyecto creado correctamente!
+      </p>';
     }
     catch (Exception $e) {
       $conn->rollback();
