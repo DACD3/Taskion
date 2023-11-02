@@ -1,6 +1,6 @@
 <?php
-  include 'config.php';
-  include 'database.php';
+  require_once 'config.php';
+  require_once 'database.php';
 
   require_once('../models/User.php');
   require_once('../models/Project.php');
