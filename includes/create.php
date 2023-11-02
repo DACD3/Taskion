@@ -1,6 +1,7 @@
 <?php
   require_once 'config.php';
   require_once 'database.php';
+  require_once 'queries.php';
 
   require_once('../models/User.php');
   require_once('../models/Project.php');
@@ -9,7 +10,8 @@
   $operationsMap = [
     'createProject' => 'handleCreateProject',
     'createTask' => 'handleCreateTask',
-    'logout' => 'handleLogout'
+    'logout' => 'handleLogout',
+    'editProject' => 'handleEditProject',
   ];
 
   function handleCreateProject($fields) {
@@ -97,6 +99,57 @@
       $conn->rollback();
       echo "Error: " . $e->getMessage();
     }
+  }
+
+  function handleEditProject($fields) {
+
+    // Get operation
+    $operation = $fields['operation'] ?? null;
+
+    // Get project id 
+    $project_id = $fields['project-id'] ?? null;
+
+    // Get project name 
+    $project_name = $fields['project-name'] ?? null;
+
+    // Check if name is not equal that is stored already
+    $sql = "SELECT Name from projects WHERE id = ?";
+
+
+    $retrieved_name = executeQuery(false, $sql, [
+      $project_id
+    ]); // acess to the first position of the "result array"
+
+    if ($project_name == $retrieved_name) {
+      return;
+    }
+
+    switch($operation) {
+      case "delete":
+
+        $sql = "DELETE FROM projects where id = ?";
+
+        executeQuery(false, $sql, [
+          $project_id
+        ]);
+
+        // Decide what to do here :/
+
+        break;
+      case "save":
+
+        $sql = "UPDATE projects SET Name = ? WHERE id = ?";
+
+        executeQuery(false, $sql, [
+          $project_name,
+          $project_id
+        ]);
+
+        break;
+    }
+
+    // Update projects session object
+    getProjectsByUser();
   }
 
 function handleLogout() {
