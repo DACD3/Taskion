@@ -12,6 +12,15 @@
   --tab-bg: #5e6a75;
   --tab-bg-hv: #353b41;
   --tab-bg-active: #0466c8;
+
+  --project-bg: #1e1e1e;
+  --project-name-bg: #2c2c2c;
+  --project-name-b: #3c3c3c;
+
+  --btn-save-bg: #2d6a4f;
+  --btn-save-bg-hv: #37735b;
+  --btn-delete-bg: #d90429;
+  --btn-delete-bg-hv: #c10326;
 }
 
 body {
@@ -128,7 +137,9 @@ body {
 
 .projects {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center; 
+  /* align-items: center; */
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: #000000 #404040;
@@ -151,6 +162,65 @@ body {
 }
 
 .project {
+  /* width: 100%; */
+  background-color: var(--project-bg);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.project .project-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+.project .project-name {
+  border-radius: 0.2rem;
+  color: white;
+  padding: 0.5rem;
+  border: 0.1rem solid transparent;
+  background-color: transparent;
+}
+
+.project .project-name:hover,
+.project-name:focus {
+  background-color: var(--project-name-bg);
+  border-color: var(--project-name-b)
+}
+
+.project-form .form-actions {
+  display: flex;
+  justify-content: space-between; 
+}
+
+.form-actions .btn {
+  border: 0.1rem solid transparent;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+
+.btn.save {
+  background-color: var(--btn-save-bg);
+}
+
+.btn.save:hover {
+  background-color: var(--btn-save-bg-hv);
+}
+
+.btn.delete {
+  background-color: var(--btn-delete-bg);
+}
+
+.btn.delete:hover {
+  background-color: var(--btn-delete-bg-hv);
+}
+
+
+/* .project {
   display: flex;
   padding: 1rem;
   gap: 1rem;
@@ -160,7 +230,7 @@ body {
 .project .action {
   display: flex;
   gap: 0.2rem;
-}
+} */
 
 #form-container .form {
   all: unset;
@@ -214,6 +284,12 @@ body {
   cursor: pointer;
 }
 
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .tab-content .form {
   display: none;
   padding: 0.5rem;
@@ -234,6 +310,12 @@ body {
 
   .input {
     width: 20%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .project {
+    width: 100%;
   }
 }
 
