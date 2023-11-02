@@ -52,11 +52,14 @@ $user = $_SESSION['user'];
           <section class="form-group">
             <label for="" class="label">Proyecto</label>
             <?php
+
+              $projects = getProjectsByUser();
+
               echo '<select class="select" id="select" name="project">';
               
                 echo "<option disabled selected>Selecciona un proyecto</option>";
 
-              foreach ($_SESSION['projects'] as $project) {
+              foreach ($projects as $project) {
                 $project = new Project($project['id'], $project['Name']);
 
                 $project_id = $project->getId();
@@ -89,7 +92,43 @@ $user = $_SESSION['user'];
     <h2>Proyectos</h2>
     
     <section class="projects" id="projects">
-      
+      <?php 
+
+        $result = getProjectsByUser();
+
+        foreach($result as $project) {
+          $project = new Project($project['id'], $project['Name']);
+
+          $project_id = $project->getId();
+          $project_name = $project->getName();
+
+          $project_tasks = getProjectTasks($project_id);
+
+          $projectSaveBtn = "<button name='operation' value='save'  class='btn save'>Guardar</button>";
+          $projectDeleteBtn = "<button name='operation' value='delete' class='btn delete'>Eliminar</button>";
+
+          $projectAContainerEl = "<section class='form-actions'>
+            $projectSaveBtn
+            $projectDeleteBtn
+          </section";
+
+          $projectNameEl = "<input type='text' name='project-name' class='project-name' value='$project_name' />";
+          
+          $projectIdEl = "<input type='hidden' name='project-id' value ='$project_id'/>";
+
+          $projectFormEl = "<form action='/app?operation=editProject' method='POST' class='project-form'>
+            $projectIdEl
+            $projectNameEl
+            $projectAContainerEl
+          </form>";
+
+          $projectEl = "<article class='project' id='project-$project_id'>
+            $projectFormEl
+          </article>";
+
+         echo $projectEl;
+        }
+      ?>
     </section>
 
   </main>
