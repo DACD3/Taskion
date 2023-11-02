@@ -51,6 +51,20 @@ $user = $_SESSION['user'];
 
           <section class="form-group">
             <label for="" class="label">Proyecto</label>
+            <?php
+              echo '<select class="select" id="select" name="project">';
+              
+                echo "<option disabled selected>Selecciona un proyecto</option>";
+
+              foreach ($_SESSION['projects'] as $project) {
+                $project = new Project($project['id'], $project['Name']);
+
+                $project_id = $project->getId();
+
+                echo "<option class='option' value='$project_id'>{$project->getName()}</option>";
+              }
+                echo '</select>';
+            ?>
           </section>
 
           <section class="form-group">
@@ -68,26 +82,14 @@ $user = $_SESSION['user'];
           </section>
 
         </form>
-        <?php require_once('../includes/create.php') ?>
+        <?php require_once ('../includes/create.php') ?>
       </section>
     </section>
 
     <h2>Proyectos</h2>
     
     <section class="projects" id="projects">
-      <?php
-        $result = getProjectsByUser();
-
-        foreach($result as $project) {
-          $project = new Project($project['id'], $project['Name']);
-
-          $project_id = $project->getId();
-
-          echo "<article class='project' id=$project_id>";
-          echo "<h4>{$project->getName()}</h4>";
-          echo "</article>";
-        }
-      ?>
+      
     </section>
 
   </main>
