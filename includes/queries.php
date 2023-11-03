@@ -23,7 +23,13 @@
       $user->getId()
     ]);
 
-    $_SESSION['projects'] = $result;
+    return $result;
   }
 
-  getProjectsByUser(); 
+  function getProjectTasks($project_id) {
+    $sql = "SELECT t.* FROM tasks t JOIN projects_has_tasks up ON t.id = up.task_id WHERE up.project_id = ?";
+
+    return executeQuery(true, $sql, [
+      $project_id
+    ]);
+  }
