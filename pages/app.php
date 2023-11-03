@@ -96,6 +96,10 @@ $user = $_SESSION['user'];
 
         $result = getProjectsByUser();
 
+        if (empty($result)) {
+          echo '<h2>¿No hay proyectos? Cree uno!</h2>';
+        }
+
         foreach($result as $project) {
           $project = new Project($project['id'], $project['Name']);
 
@@ -116,9 +120,24 @@ $user = $_SESSION['user'];
           
           $projectIdEl = "<input type='hidden' name='project-id' value ='$project_id'/>";
 
+          $tasks = getProjectTasks($project_id);
+
+          
+          $tasksEl = "<ul class='task-list'>";
+
+          foreach($tasks as $task) {
+
+            $task = new Task(null, $task["Name"], $task["Description"]);
+
+            $tasksEl  .= "<li class='task'>{$task->getName()} - {$task->getDescription()}</li>";
+          }
+
+          $tasksEl .= "</ul>";
+
           $projectFormEl = "<form action='/app?operation=editProject' method='POST' class='project-form'>
             $projectIdEl
             $projectNameEl
+            $tasksEl
             $projectAContainerEl
           </form>";
 
