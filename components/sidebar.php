@@ -43,8 +43,8 @@
   </ul>
 
   <section class="user">
-    <p>
-    </p>
+    <img id="userAvatar" class="avatar" width="64" height="64" alt="" src="" />
+    <p id="username"></p>
   </section>
 
 </header>
