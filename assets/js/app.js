@@ -5,7 +5,7 @@ const FORMS = [
   },
   {
     id: "task",
-    formId: `form-task`
+    formId: `form-task`,
   },
 ]
 
@@ -37,4 +37,27 @@ const handleTabChange = (e) => {
 
 tabs.forEach(el => {
   el.addEventListener('click', handleTabChange);
+});
+
+const createProjectForm = $('form-project');
+
+createProjectForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(e.target);
+
+  try {
+    const request = await fetch('/app?operation=createProject', {
+      method: "POST",
+      body: formData
+    });
+
+    if (request.ok) {
+      window.location.reload();
+    }
+  }
+  catch(ex) {
+    console.error(ex);
+  }
+
 });
