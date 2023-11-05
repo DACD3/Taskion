@@ -27,7 +27,7 @@ $user = $_SESSION['user'];
   <?php include('../components/sidebar.php') ?>
   <?php require_once ('../includes/queries.php') ?>
   <main class="app content">
-    <h1>¡Bienvenido <?php echo substr($user->getName(), 0, 7) ?>!</h1>
+    <h1>¡Bienvenido <?php echo $user->getUsername() ?>!</h1>
     
     <section class="tab-component">
       <section class="tab-container">
@@ -66,7 +66,7 @@ $user = $_SESSION['user'];
 
                 echo "<option class='option' value='$project_id'>{$project->getName()}</option>";
               }
-                echo '</select>';
+              echo '</select>';
             ?>
           </section>
 
@@ -127,9 +127,12 @@ $user = $_SESSION['user'];
 
           foreach($tasks as $task) {
 
-            $task = new Task(null, $task["Name"], $task["Description"]);
+            $task = new Task($task['id'], $task["Name"], $task["Description"]);
 
-            $tasksEl  .= "<li class='task'>{$task->getName()} - {$task->getDescription()}</li>";
+            $task_id = $task->getId();
+            $task_name = $task->getName();
+            $task_description = $task->getDescription();
+
           }
 
           $tasksEl .= "</ul>";
