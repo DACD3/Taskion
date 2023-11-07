@@ -12,6 +12,7 @@
     'createTask' => 'handleCreateTask',
     'logout' => 'handleLogout',
     'editProject' => 'handleEditProject',
+    'taskHandle' => 'handleTask'
   ];
 
   function handleCreateProject($fields) {
@@ -94,7 +95,7 @@
 
       $conn->commit();
 
-      echo '<p class="sucess"> <span onclick="close(e)" class="closeable fas fa-times fa-xl"></span> ¡Proyecto creado correctamente!</p>';
+      echo '<p class="sucess"> <span onclick="close(e)" class="closeable fas fa-times fa-xl"></span> ¡Tarea creada correctamente!</p>';
     } catch (Exception $e) {
       $conn->rollback();
       echo "Error: " . $e->getMessage();
@@ -150,6 +151,51 @@
 
     // Update projects session object
     getProjectsByUser();
+  }
+
+  function handleTask($fields) {
+
+    $operation = $fields['operation'] ?? null;
+
+    $task_id = $fields['task-id'] ?? null;
+    $task_name = $fields['task-name'] ?? null;
+    $task_description = $fields['task-description'] ?? null;
+
+    $sql = "SELECT Name from projects WHERE id = ?";
+
+
+    $retrieved_name = executeQuery(false, $sql, [
+      $task_id
+    ]); // acess to the first position of the "result array"
+
+    if ($task_name == $retrieved_name) {
+      return;
+    }
+
+    switch($operation) {
+      case "delete":
+        
+        $sql = "DELETE FROM tasks where id = ?";
+
+        executeQuery(false, $sql, [
+          $task_id
+        ]);
+        
+        break;
+      case "save":
+
+        $sql = "UPDATE tasks SET Name = ? and Description = ? WHERE id = ?";
+
+        executeQuery(false, $sql, [
+            $task_name,
+            $task_description,
+            $task_id
+        ]);
+
+        break;
+    }
+
+    var_dump($operation);
   }
 
 function handleLogout() {
