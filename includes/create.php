@@ -104,6 +104,15 @@
 
   function handleEditProject($fields) {
 
+    // Detect if there's a value named task-operation
+
+    $task_operation = $fields["task-operation"] ?? null;
+
+    if ($task_operation) {
+      handleTask($fields);
+      return;
+    }
+
     // Get operation
     $operation = $fields['operation'] ?? null;
 
@@ -155,47 +164,37 @@
 
   function handleTask($fields) {
 
-    $operation = $fields['operation'] ?? null;
+    var_dump($fields);
+
+    $operation = $fields['task-operation'] ?? null;
 
     $task_id = $fields['task-id'] ?? null;
     $task_name = $fields['task-name'] ?? null;
     $task_description = $fields['task-description'] ?? null;
 
-    $sql = "SELECT Name from projects WHERE id = ?";
-
-
-    $retrieved_name = executeQuery(false, $sql, [
-      $task_id
-    ]); // acess to the first position of the "result array"
-
-    if ($task_name == $retrieved_name) {
-      return;
-    }
 
     switch($operation) {
-      case "delete":
-        
-        $sql = "DELETE FROM tasks where id = ?";
+      
+      case 'delete':
+
+        $sql = 'DELETE FROM tasks WHERE id = ?';
 
         executeQuery(false, $sql, [
-          $task_id
+          $task_id  
         ]);
+      
+      case 'update':
         
-        break;
-      case "save":
-
-        $sql = "UPDATE tasks SET Name = ? and Description = ? WHERE id = ?";
-
+        $sql = 'UPDATE tasks SET Name = ?, Description = ? WHERE id = ? ';
+        
         executeQuery(false, $sql, [
-            $task_name,
-            $task_description,
-            $task_id
+          $task_name,
+          $task_description,
+          $task_id
         ]);
 
         break;
     }
-
-    var_dump($operation);
   }
 
 function handleLogout() {
