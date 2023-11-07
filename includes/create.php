@@ -68,6 +68,13 @@
     try {
       $project_id = $fields['project'] ?? null;
 
+      if ($project_id === null) {
+
+        echo '<p class="error"><span class="fas fa-times fa-xl"></span> No puedes crear una tarea sin asignarla a un proyecto</p>';
+
+        return;
+      }
+
       $sql = 'INSERT INTO tasks (Name, Description) VALUES (?, ?)';
 
       $task_name = htmlspecialchars($fields['Name'], ENT_QUOTES, 'UTF-8');
@@ -163,8 +170,6 @@
   }
 
   function handleTask($fields) {
-
-    var_dump($fields);
 
     $operation = $fields['task-operation'] ?? null;
 
