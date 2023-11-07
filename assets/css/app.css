@@ -21,6 +21,9 @@
   --btn-save-bg-hv: #37735b;
   --btn-delete-bg: #d90429;
   --btn-delete-bg-hv: #c10326;
+
+  --task-list-bg: #444444;
+  --task-indicator-bg: #3f51b5;
 }
 
 body {
@@ -163,9 +166,13 @@ body {
 
 .project {
   /* width: 100%; */
+  display: flex;
+  flex-direction: column;
   background-color: var(--project-bg);
   border-radius: 0.5rem;
   padding: 1rem;
+  gap: 1rem;
+  align-items: space-between;
 }
 
 .project .project-form {
@@ -173,7 +180,6 @@ body {
   flex-direction: column;
   gap: 0.5rem;
 }
-
 
 .project .project-name {
   border-radius: 0.2rem;
@@ -218,19 +224,6 @@ body {
 .btn.delete:hover {
   background-color: var(--btn-delete-bg-hv);
 }
-
-
-/* .project {
-  display: flex;
-  padding: 1rem;
-  gap: 1rem;
-  background-color: var(--project-bg);
-}
-
-.project .action {
-  display: flex;
-  gap: 0.2rem;
-} */
 
 #form-container .form {
   all: unset;
@@ -341,3 +334,70 @@ body {
   padding: 0.5em 1em;
   font-size: 1em;
 }
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0.5rem;
+  background-color: var(--task-list-bg);
+  border-radius: 0.2rem;
+}
+
+.task-list:empty {
+  display: none;
+}
+
+.task {
+  border: 0.2rem solid transparent;
+  border-left-color: var(--task-indicator-bg);
+  padding: 0.5rem;
+}
+
+
+.task-input {
+  background-color: transparent;
+  border: 0.1rem solid transparent;
+  color: white;
+}
+
+.task-button {
+  border: 0.1rem solid transparent;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  color: white;
+}
+
+.task-input {
+  border-radius: 0.2rem;
+  color: white;
+  padding: 0.5rem;
+  border: 0.1rem solid transparent;
+  background-color: transparent;;
+}
+
+.task-button.save  {
+  background-color: var(--btn-save-bg);
+}
+
+.task-button.save:hover  {
+  background-color: var(--btn-save-bg-hv);
+}
+
+.task-button.delete {
+  background-color: var(--btn-delete-bg);
+}
+
+.task-button.delete:hover {
+  background-color: var(--btn-delete-bg-hv);
+}
+
+/* .project .project-name {
+  border-radius: 0.2rem;
+  color: white;
+  padding: 0.5rem;
+  border: 0.1rem solid transparent;
+  background-color: transparent;
+} */
