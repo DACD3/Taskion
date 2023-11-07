@@ -114,7 +114,7 @@ $user = $_SESSION['user'];
           $projectAContainerEl = "<section class='form-actions'>
             $projectSaveBtn
             $projectDeleteBtn
-          </section";
+          </section>";
 
           $projectNameEl = "<input type='text' name='project-name' class='project-name' value='$project_name' />";
           
@@ -122,21 +122,29 @@ $user = $_SESSION['user'];
 
           $tasks = getProjectTasks($project_id);
 
-          
           $tasksEl = "<ul class='task-list'>";
 
-          foreach($tasks as $task) {
-
-            $task = new Task($task['id'], $task["Name"], $task["Description"]);
+          foreach ($tasks as $taskData) {
+            $task = new Task($taskData["id"], $taskData["Name"],
+                             $taskData["Description"]);
 
             $task_id = $task->getId();
-            $task_name = $task->getName();
+            $task_name = $task->getName(); 
             $task_description = $task->getDescription();
 
+            $taskFormEl = "<section class='task'>
+              <input type='hidden' name='task-id' value='$task_id' />
+              <input class='task-input' type='text' name='task-name' value='$task_name' />
+              <input class='task-input' type='text' name='task-description' value='$task_description' />
+              <button name='task-operation' value='update' class='task-button save'><span class='task-icon fas fa-plus fa-xl'></span></button>
+              <button name='task-operation' value='delete' class='task-button delete'><span class='task-icon fas fa-times fa-xl'></span></button>
+            </section>";
+
+            $tasksEl .= "<li>$taskFormEl</li>";
           }
 
           $tasksEl .= "</ul>";
-
+          
           $projectFormEl = "<form action='/app?operation=editProject' method='POST' class='project-form'>
             $projectIdEl
             $projectNameEl
@@ -148,7 +156,7 @@ $user = $_SESSION['user'];
             $projectFormEl
           </article>";
 
-         echo $projectEl;
+          echo $projectEl;
         }
       ?>
     </section>
